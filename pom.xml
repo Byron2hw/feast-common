@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.0.0</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.feast</groupId>
+    <artifactId>feast-common</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>feast-common</name>
+    <description>feast common project for Spring Boot</description>
+    <properties>
+        <java.version>19</java.version>
+        <feast-common.version>${version}</feast-common.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.feast</groupId>
+                <artifactId>daemon</artifactId>
+                <version>${feast-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.feast</groupId>
+                <artifactId>controller</artifactId>
+                <version>${feast-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.feast</groupId>
+                <artifactId>dal</artifactId>
+                <version>${feast-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.feast</groupId>
+                <artifactId>client</artifactId>
+                <version>${feast-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.feast</groupId>
+                <artifactId>facade</artifactId>
+                <version>${feast-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.feast</groupId>
+                <artifactId>util</artifactId>
+                <version>${feast-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.feast</groupId>
+                <artifactId>model</artifactId>
+                <version>${feast-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.feast</groupId>
+                <artifactId>service</artifactId>
+                <version>${feast-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.feast</groupId>
+                <artifactId>starter</artifactId>
+                <version>${feast-common.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>app/biz/daemon</module>
+        <module>app/biz/controller</module>
+        <module>app/common/dal</module>
+        <module>app/common/integration/facade</module>
+        <module>app/common/integration/client</module>
+        <module>app/common/util</module>
+        <module>app/core/model</module>
+        <module>app/core/service</module>
+        <module>app/starter</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <skipTests>true</skipTests>    <!--默认关掉单元测试 -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
