@@ -25,7 +25,6 @@ public class SwaggerAutoconfigure {
     public Docket createRestApi() {
         return new Docket(DocumentationType.OAS_30)
                 .enable("dev".equals(active))
-//                .apiInfo()
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())

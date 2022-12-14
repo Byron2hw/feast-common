@@ -26,3 +26,5 @@ nbdist/
 .DS_Store
 .mvn
 logs
+
+*.class
