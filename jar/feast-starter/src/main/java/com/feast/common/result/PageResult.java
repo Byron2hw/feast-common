@@ -27,7 +27,7 @@ public class PageResult<E> extends AbstractResult {
         PageResult<E> pageResult = new PageResult<>();
         pageResult.setSuccess(true);
         pageResult.setCode(HttpStatus.OK.value());
-        pageResult.setSeries(HttpStatus.OK.series());
+        pageResult.setSeries(HttpStatus.OK.series().name());
         pageResult.setMsg(HttpStatus.OK.getReasonPhrase());
         pageResult.setPageIndex(page.getPageIndex());
         pageResult.setPageSize(page.getPageSize());
@@ -36,7 +36,7 @@ public class PageResult<E> extends AbstractResult {
         return pageResult;
     }
 
-    public static <E> PageResult<E> fail(Integer code, HttpStatus.Series series, String msg) {
+    public static <E> PageResult<E> fail(Integer code, String series, String msg) {
         PageResult<E> pageResult = new PageResult<>();
         pageResult.setSuccess(false);
         pageResult.setCode(code);
@@ -45,7 +45,7 @@ public class PageResult<E> extends AbstractResult {
         return pageResult;
     }
 
-    public static <E> PageResult<E> fail(Integer code, HttpStatus.Series series, String msg, Pagination<E> page) {
+    public static <E> PageResult<E> fail(Integer code, String series, String msg, Pagination<E> page) {
         PageResult<E> pageResult = new PageResult<>();
         pageResult.setSuccess(false);
         pageResult.setCode(code);
@@ -59,19 +59,19 @@ public class PageResult<E> extends AbstractResult {
     }
 
     public static <E> PageResult<E> clientFail(Integer code, String msg) {
-        return fail(code, HttpStatus.Series.CLIENT_ERROR, msg);
+        return fail(code, HttpStatus.Series.CLIENT_ERROR.name(), msg);
     }
 
     public static <E> PageResult<E> clientFail(Integer code, String msg, Pagination<E> page) {
-        return fail(code, HttpStatus.Series.CLIENT_ERROR, msg, page);
+        return fail(code, HttpStatus.Series.CLIENT_ERROR.name(), msg, page);
     }
 
     public static <E> PageResult<E> serverFail(Integer code, String msg) {
-        return fail(code, HttpStatus.Series.SERVER_ERROR, msg);
+        return fail(code, HttpStatus.Series.SERVER_ERROR.name(), msg);
     }
 
     public static <E> PageResult<E> serverFail(Integer code, String msg, Pagination<E> page) {
-        return fail(code, HttpStatus.Series.SERVER_ERROR, msg, page);
+        return fail(code, HttpStatus.Series.SERVER_ERROR.name(), msg, page);
     }
 
 }

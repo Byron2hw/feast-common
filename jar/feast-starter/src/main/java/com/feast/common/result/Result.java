@@ -23,13 +23,13 @@ public class Result<E> extends AbstractResult {
         Result<E> result = new Result<>();
         result.setSuccess(true);
         result.setCode(HttpStatus.OK.value());
-        result.setSeries(HttpStatus.OK.series());
+        result.setSeries(HttpStatus.OK.series().name());
         result.setMsg(HttpStatus.OK.getReasonPhrase());
         result.setData(data);
         return new Result<>();
     }
 
-    public static <E> Result<E> fail(Integer code, HttpStatus.Series series, String msg) {
+    public static <E> Result<E> fail(Integer code, String series, String msg) {
         Result<E> result = new Result<>();
         result.setSuccess(false);
         result.setCode(code);
@@ -39,10 +39,10 @@ public class Result<E> extends AbstractResult {
     }
 
     public static <E> Result<E> clientFail(Integer code, String msg) {
-        return fail(code, HttpStatus.Series.CLIENT_ERROR, msg);
+        return fail(code, HttpStatus.Series.CLIENT_ERROR.name(), msg);
     }
 
     public static <E> Result<E> serverFail(Integer code, String msg) {
-        return fail(code, HttpStatus.Series.SERVER_ERROR, msg);
+        return fail(code, HttpStatus.Series.SERVER_ERROR.name(), msg);
     }
 }

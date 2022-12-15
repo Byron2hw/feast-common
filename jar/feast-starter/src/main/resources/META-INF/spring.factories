@@ -1,1 +1,3 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.feast.common.autoconfigure.SwaggerAutoconfigure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.feast.common.autoconfigure.SwaggerAutoconfigure,\
+com.feast.common.autoconfigure.ValidationConfigure
