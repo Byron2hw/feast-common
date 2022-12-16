@@ -2,7 +2,6 @@ package com.feast.common.exception.handler;
 
 import com.feast.common.result.Result;
 import org.springframework.http.HttpStatusCode;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -19,9 +18,7 @@ public class WebClientResponseExceptionCommonHandler extends AbstractExceptionCo
     public Mono<ServerResponse> handlerException(ServerWebExchange exchange, Exception e) {
         super.errorLog(exchange, e);
         HttpStatusCode statusCode = ((WebClientResponseException) e).getStatusCode();
-        return ServerResponse.status(statusCode.value())
-                .contentType(MediaType.APPLICATION_JSON)
-                .bodyValue(Result.serverFail(statusCode.value(), e.getMessage()));
+        return super.monoServerResponse(statusCode.value(), Result.serverFail(statusCode.value(), e.getMessage()));
     }
 
     @Override
