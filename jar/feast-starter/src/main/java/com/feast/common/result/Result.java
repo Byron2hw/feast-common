@@ -1,6 +1,5 @@
 package com.feast.common.result;
 
-import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,7 +15,6 @@ import org.springframework.http.HttpStatus;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Result<E> extends AbstractResult {
-    @Email
     private E data;
 
     public static <E> Result<E> success(E data) {
@@ -26,7 +24,7 @@ public class Result<E> extends AbstractResult {
         result.setSeries(HttpStatus.OK.series().name());
         result.setMsg(HttpStatus.OK.getReasonPhrase());
         result.setData(data);
-        return new Result<>();
+        return result;
     }
 
     public static <E> Result<E> fail(Integer code, String series, String msg) {
